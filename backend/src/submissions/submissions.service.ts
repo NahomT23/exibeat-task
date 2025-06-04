@@ -62,7 +62,7 @@ export class SubmissionsService {
       throw new BadRequestException('Submission not found');
     }
 
-    // Update read statuses
+
     if (viewerId === submission.djId && submission.unreadProducerMessage) {
       submission.unreadProducerMessage = false;
       await submission.save();
@@ -99,7 +99,7 @@ async addMessage(
     throw new BadRequestException('DJ can only send one feedback per submission');
   }
 
-  // Create new message with current timestamp
+
   const newMessage = {
     senderId: createMessageDto.senderId,
     text: createMessageDto.text,

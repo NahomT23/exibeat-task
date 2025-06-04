@@ -1,23 +1,29 @@
-import { IsNotEmpty, IsString, IsOptional } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional, IsUUID } from 'class-validator';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export class CreateSubmissionDto {
+  @ApiProperty({ format: 'uuid' })
+  @IsUUID()
   @IsNotEmpty()
-  @IsString()
   producerId: string;
 
+  @ApiProperty({ format: 'uuid' })
+  @IsUUID()
   @IsNotEmpty()
-  @IsString()
   djId: string;
 
-  @IsNotEmpty()
+  @ApiProperty()
   @IsString()
+  @IsNotEmpty()
   trackTitle: string;
 
-  @IsOptional()
+  @ApiPropertyOptional()
   @IsString()
+  @IsOptional()
   trackDescription?: string;
 
-  @IsOptional()
+  @ApiPropertyOptional()
   @IsString()
+  @IsOptional()
   initialMessage?: string;
 }

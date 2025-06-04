@@ -11,7 +11,7 @@ import { ThrottlerModule } from '@nestjs/throttler';
       name: Submission.name,
       schema: SubmissionSchema
     }]),
-    ThrottlerModule, // Import ThrottlerModule here
+    ThrottlerModule, 
   ],
   controllers: [SubmissionsController],
   providers: [SubmissionsService]

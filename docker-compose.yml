@@ -7,22 +7,30 @@ services:
       dockerfile: Dockerfile
     container_name: exibeat-backend
     restart: unless-stopped
-
-    # Docker Compose will load all variables from backend/.env (including MONGO_URI)
     env_file:
-      - ./backend/.env
-
+      - ./backend/.env  # Contains MONGO_URI
     ports:
       - "4000:4000"
+
+    networks:
+      - exibeat-network
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        - NEXT_PUBLIC_BASE_URL=http://backend:4000/submissions
     container_name: exibeat-frontend
     restart: unless-stopped
-
     ports:
       - "3000:3000"
     depends_on:
       - backend
+    networks:
+      - exibeat-network
+
+# network configuration
+networks:
+  exibeat-network:
+    driver: bridge

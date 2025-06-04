@@ -10,7 +10,6 @@ export class Message {
   @Prop({ required: true })
   text: string;
 
-  // Explicitly declare timestamps to avoid validation issues
   @Prop()
   createdAt?: Date;
 
@@ -20,7 +19,7 @@ export class Message {
 
 export const MessageSchema = SchemaFactory.createForClass(Message);
 
-// Rest of the Submission schema remains the same
+
 @Schema({ timestamps: true })
 export class Submission extends Document {
   @Prop({ required: true, unique: true, default: () => new Types.ObjectId().toString() })

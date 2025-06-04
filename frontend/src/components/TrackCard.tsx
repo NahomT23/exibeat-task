@@ -77,7 +77,7 @@ export default function TrackCard({
         <div className="flex flex-col items-end">
           <Button
             variant="ghost"
-            className="text-blue-600 hover:text-gray-800 underline"
+            className="text-gray-600 hover:text-gray-800 underline"
             onClick={() => setShowFeedbackModal(true)}
             disabled={submission.djReplied}
           >
