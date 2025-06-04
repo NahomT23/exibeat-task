@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: exibeat-backend
+    restart: unless-stopped
+
+    # Docker Compose will load all variables from backend/.env (including MONGO_URI)
+    env_file:
+      - ./backend/.env
+
+    ports:
+      - "4000:4000"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: exibeat-frontend
+    restart: unless-stopped
+
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
